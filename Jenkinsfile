@@ -9,5 +9,11 @@ pipeline {
                 sh "java HelloWorld"
             }
         }
+	stage('Test') {
+	steps {
+		sh 'javac TCS.java'
+		sh 'java TCS'
+	}
+}
     }
 }
