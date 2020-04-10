@@ -9,6 +9,8 @@ pipeline {
                         sh 'mvn clean package sonar:sonar'
     }
   }
+	    }
+	     }
         stage('Build') { 
             steps { 
                 sh 'pwd'
