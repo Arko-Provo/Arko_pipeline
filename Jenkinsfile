@@ -1,10 +1,26 @@
 pipeline { 
     agent any 
     stages {
-	     stage('SonarQube analysis') {
-            steps {
-		    withSonarQubeEnv(credentialsId: 'SonarQube_Latest') {
-
+         stage ('Code Quality Analysis'){
+           
+			steps{
+              
+				script{
+                    
+					scannerhome = tool 'sonar_scanner'
+                
+				}
+                
+				withSonarQubeEnv('SonarQube') {
+                   
+					sh """
+                       
+						${scannerhome}/bin/sonar76 \
+                       	
+						-Dsonar.projectKey=Sonar_Arko \
+                       
+						-Dsonar.sources=. \
+    
 }
                    
     }
