@@ -15,7 +15,7 @@ pipeline {
                    
 					sh """
                        
-						${scannerhome}/bin/sonar76 \
+						${scannerhome}/opt/sonar76 \
                        	
 						-Dsonar.projectKey=Sonar_Arko \
                        
