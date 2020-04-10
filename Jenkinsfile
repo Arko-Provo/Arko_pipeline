@@ -3,7 +3,9 @@ pipeline {
     stages {
 	     stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') 
+		    withSonarQubeEnv(credentialsId: 'SonarQube_Latest') {
+
+}
                    
     }
   }
