@@ -2,19 +2,15 @@ pipeline {
 	agent any
 	stages {
 		stage ('Code Quality Analysis'){
-			steps{
-              
-				script{
-					scannerhome = tool 'sonar_scanner'
-				}
-				withSonarQubeEnv('SonarQube') {
-					sh """
-					${scannerhome}/opt/sonar76 \
-					-Dsonar.projectKey=sonar \
-					-Dsonar.sources=. \
-					}
-					}
-					}
+            environment {
+                scannerHome = tool 'SonarQube'
+            }
+            steps{
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn clean package sonar:sonar'
+		}
+	    }
+		}
 stage('Build') { 
  steps {
             sh 'pwd'
