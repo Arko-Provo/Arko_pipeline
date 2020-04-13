@@ -9,7 +9,7 @@ pipeline {
                     
 					scannerhome = tool 'sonar_scanner'
                 
-				}
+					}
                 
 				withSonarQubeEnv('SonarQube') {
                    
@@ -21,23 +21,25 @@ pipeline {
                        
 						-Dsonar.sources=. \
     
-}
+					}
                    
-    }
+		        }
+		}
+		 
   }
-        stage('Build') { 
+ stage('Build') { 
             steps { 
                 sh 'pwd'
                 sh 'ls -l'
                 sh 'javac HelloWorld.java'
                 sh "java HelloWorld"
             }
-        }
-	stage('Test') {
+    }
+stage('Test') {
 	steps {
 		sh 'javac TCS.java'
 		sh 'java TCS'
-	}
-}
+	     }
+           }
     }
 }
