@@ -10,7 +10,7 @@ pipeline {
 				withSonarQubeEnv('SonarQube') {
 					sh """
 					${scannerhome}/opt/sonar76 \
-					-Dsonar.projectKey=Sonar_Arko \
+					-Dsonar.projectKey=sonar \
 					-Dsonar.sources=. \
 					}
 					}
