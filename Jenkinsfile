@@ -2,17 +2,18 @@ pipeline {
 	agent any
 	stages {
 		stage ('Code Quality Analysis'){
-            environment {
-                scannerHome = tool 'SonarQube'
-            }
-            steps{
-                withSonarQubeEnv('SonarQube') {
-			//def M2_HOME = tool name: 'maven-3', type:'maven'
-			sh "${M2_HOME}/bin/mvn package"
-                    sh 'mvn clean package sonar:sonar'
-		}
-	    }
-		}
+environment {
+        scannerHome = tool 'SonarQube'
+    }
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+}
 stage('Build') { 
  steps {
             sh 'pwd'
