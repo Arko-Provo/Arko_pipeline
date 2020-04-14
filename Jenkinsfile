@@ -8,6 +8,7 @@ pipeline {
             steps{
                 withSonarQubeEnv('SonarQube') {
 			//def M2_HOME = tool name: 'maven-3', type:'maven'
+	mvn  -Dsonar.analysis.mode=preview -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dsonar.working.directory=/mypath/target/.sonar
 			sh "${M2_HOME}/bin/mvn package"
                     sh 'mvn clean package sonar:sonar'
 		}
