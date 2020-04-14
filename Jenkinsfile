@@ -3,13 +3,13 @@ pipeline {
 	stages {
 		stage ('Code Quality Analysis'){
             environment {
-                scannerHome = tool 'SonarQube'
+                scannerHome = tool 'SonarQubeScanner'
             }
             steps{
                 withSonarQubeEnv('SonarQube') {
 			//def M2_HOME = tool name: 'maven-3', type:'maven'
 			sh "${M2_HOME}/bin/mvn package"
-                    //sh 'mvn clean package sonar:sonar'
+                    sh 'mvn clean package sonar:sonar'
 		}
 	    }
 		}
