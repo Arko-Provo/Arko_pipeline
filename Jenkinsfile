@@ -7,6 +7,8 @@ pipeline {
     //}
     steps {
 	    script{
+		    sh 'javac HelloWorld.java'
+		    sh 'javac TCS.java'
 	    def scannerHome = tool 'SonarQubeScanner'
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner"
