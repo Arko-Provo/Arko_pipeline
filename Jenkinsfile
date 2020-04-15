@@ -2,10 +2,11 @@ pipeline {
 	agent any
 	stages {
 		stage ('Code Quality Analysis'){
-environment {
-        scannerHome = tool 'SonarQubeScanner'
-    }
+//environment {
+  //      scannerHome = tool 'SonarQubeScanner'
+    //}
     steps {
+	    def scannerHome = tool 'SonarQubeScanner'
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner"
         }
